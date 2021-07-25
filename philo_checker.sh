@@ -61,6 +61,22 @@ rm -f out
 }
 
 
+runtime()
+{
+echo -e "\n${orange}Testing running time (30 seconds) with ./philo $1${clear}"
+./philo $1 > /dev/null &
+pid=$!
+x=30
+while [[ $x -ge 0 ]] ; do
+	echo -e "\r$x seconds remaining\c"
+	x=$(( $x - 1 ))
+	sleep 1
+done
+check=$(ps -aef | grep "$pid" | wc -l)
+[[ $check -eq 2 ]] && { echo -e "\r$OK               "; ok=$(( $ok + 1 )); } || { echo -e "\r$KO              "; ko=$(( $ko + 1 )); }
+kill $pid &> /dev/null
+}
+
 ### RUNNING TESTS
 case $1 in
 	"meal")
@@ -74,6 +90,12 @@ case $1 in
 		$1 "4 310 200 100 20"
 		$1 "1 800 200 200"
 		;;
+	"time")
+		compil
+		runtime "5 800 200 200"
+		runtime "4 410 200 200"
+		runtime "2 300 100 100"
+		;;
 	"all")
 		compil
 		meal "5 800 200 200"
@@ -81,6 +103,9 @@ case $1 in
 		meal "2 300 100 100"
 		death "4 310 200 100 20"
 		death "1 800 200 200"
+		runtime "5 800 200 200"
+		runtime "4 410 200 200"
+		runtime "2 300 100 100"
 		;;
 	*)
 		echo "Usage: ./philo_checker.sh [meal | death | all ]"

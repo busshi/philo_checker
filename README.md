@@ -6,4 +6,5 @@
 Usage:
 - TEST NB OF EAT OF EACH PHILO : /bin/bash philo_checker.sh meal
 - TEST DEATH : /bin/bash philo_checker.sh death
-- TEST BOTH : /bin/bash philo_checker.sh all
+- TEST RUNTIME : /bin/bash philo_checker.sh time
+- TEST ALL : /bin/bash philo_checker.sh all
