@@ -1,6 +1,9 @@
---- Check your philosophers ---
+## Check your philosophers
 
 
-Run a few tests to test your program.
+# Run a few tests on your program (without bonus).
 
-Usage: bash philo_checker.sh
+Usage:
+- TEST NB OF EAT OF EACH PHILO : /bin/bash philo_checker.sh meal
+- TEST DEATH : /bin/bash philo_checker.sh death
+- TEST BOTH : /bin/bash philo_checker.sh all
