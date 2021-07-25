@@ -25,6 +25,7 @@ echo -e "_______________________________________________________________________
 compil()
 {
 header
+echo -e "${orange}Testing compilation...${clear}"
 cd $DIR && make -s re
 [[ $? -ne 0 ]] && exit 1
 }
@@ -90,7 +91,8 @@ esac
 
 ### SUMMARY
 total=$(( $ok + $ko ))
-echo -e "\n\n${green}Passed: ${ok} / ${total}${clear}"
+echo -e "\n\n${orange}--- SUMMARY ---${clear}"
+echo -e "${green}Passed: ${ok} / ${total}${clear}"
 echo -e "${red}Failed: ${ko} / ${total}${clear}"
 
 
