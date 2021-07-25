@@ -2,24 +2,46 @@
 
 DIR="../philo"
 
+
+green="\033[32m"
+red="\033[31;1m"
+orange="\033[33;m"
+blue="\033[36m"
+clear="\033[0m"
+OK="[ ${green}OK${clear} ]"
+KO="[ ${red}KO${clear} ]"
+
+
+
+### HEADER
+header()
+{
+echo -e "${orange}____________________________________________________________________________________________________________\n"
+echo -e "________________________________________________ PHILO CHECKER _____________________________________________\n"
+echo -e "____________________________________________________________________________________________________________\n\n${clear}"
+}
+
+
 compil()
 {
-cd $DIR && make
+header
+cd $DIR && make -s re
 [[ $? -ne 0 ]] && exit 1
 }
 
-status_code=0
+ko=0
+ok=0
 
 meal()
 {
 for meal in 1 2 3 4 5 6 7 8 9 10; do
 	nb_philo=$(echo $1 | cut -d" " -f1)
-	echo -e "\nTesting ./philo $1 $meal...\n"
+	echo -e "\n${blue}Testing ./philo $1 $meal${clear}\n"
 	./philo $1 $meal > out
 	x=1
 	while [[ $x -le $nb_philo ]]; do
 		check=$( cat out | grep "${x} is eating" | wc -l )
-		[[ $check -ge $meal ]] && echo -e "[ \033[32;1mOK\033[0m ] \c" || { echo -e "[ \033[31;1mKO\033[0m ] \c"; status_code=$(( $status_code + 1 )); }
+		[[ $check -ge $meal ]] && { echo -e "${OK} \c"; ok=$(( $ok + 1 )); } || { echo -e "${KO} \c"; ko=$(( $ko + 1 )); }
 		echo -e "Philo $x ate ${check} / ${meal} times"
 		x=$(( $x + 1 ))
 	done
@@ -30,10 +52,10 @@ done
 
 death()
 {
-echo -e "\nChecking death with $1..."
+echo -e "\n${blue}Checking death with $1${clear}"
 ./philo $1 > out
 check=$(cat out | grep "died" | wc -l)
-[[ $check -eq 1 ]] && echo -e "[ \033[32;1mOK\033[0m ]" || { echo -e "[ \033[31;1mKO\033[0m ]"; status_code=$(( $status_code + 1 )); }
+[[ $check -eq 1 ]] && { echo -e ${OK}; ok=$(( $ok + 1 )); } || { echo -e ${KO}; ko=$(( $ko + 1 )); }
 rm -f out
 }
 
@@ -61,12 +83,18 @@ case $1 in
 		;;
 	*)
 		echo "Usage: ./philo_checker.sh [meal | death | all ]"
+		exit 1
 		;;
 esac
 
+
+### SUMMARY
+total=$(( $ok + $ko ))
+echo -e "\n\n${green}Passed: ${ok} / ${total}${clear}"
+echo -e "${red}Failed: ${ko} / ${total}${clear}"
 
 
 ### CLEANING AND EXIT
 rm -f philo out
 
-exit $status_code
+exit $ok
