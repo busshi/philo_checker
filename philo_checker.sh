@@ -108,7 +108,7 @@ case $1 in
 		runtime "2 300 100 100"
 		;;
 	*)
-		echo "Usage: ./philo_checker.sh [meal | death | all ]"
+		echo "Usage: ./philo_checker.sh [ meal | death | time | all ]"
 		exit 1
 		;;
 esac
