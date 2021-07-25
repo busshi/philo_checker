@@ -4,9 +4,9 @@ DIR="../philo"
 
 
 green="\033[32m"
-red="\033[31;1m"
-orange="\033[33;m"
-blue="\033[36m"
+red="\033[31m"
+orange="\033[33m"
+purple="\033[35m"
 clear="\033[0m"
 OK="[ ${green}OK${clear} ]"
 KO="[ ${red}KO${clear} ]"
@@ -36,7 +36,7 @@ meal()
 {
 for meal in 1 2 3 4 5 6 7 8 9 10; do
 	nb_philo=$(echo $1 | cut -d" " -f1)
-	echo -e "\n${blue}Testing ./philo $1 $meal${clear}\n"
+	echo -e "\n${purple}Testing ./philo $1 $meal${clear}\n"
 	./philo $1 $meal > out
 	x=1
 	while [[ $x -le $nb_philo ]]; do
@@ -52,7 +52,7 @@ done
 
 death()
 {
-echo -e "\n${blue}Checking death with $1${clear}"
+echo -e "\n${purple}Checking death with $1${clear}"
 ./philo $1 > out
 check=$(cat out | grep "died" | wc -l)
 [[ $check -eq 1 ]] && { echo -e ${OK}; ok=$(( $ok + 1 )); } || { echo -e ${KO}; ko=$(( $ko + 1 )); }
