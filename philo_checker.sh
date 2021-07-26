@@ -63,8 +63,8 @@ rm -f out
 
 runtime()
 {
-echo -e "\n${purple}Testing running time (30 seconds): ./philo $1${clear}"
 [ -z $2 ] && duration=60 || duration=$2
+echo -e "\n${purple}Testing running time (${duration} seconds): ./philo $1${clear}"
 ./philo $1 &> /dev/null &
 pid=$!
 while [[ $duration -ge 0 ]] ; do
