@@ -75,6 +75,7 @@ done
 check=$(ps -aef | grep "$pid" | wc -l)
 [[ $check -eq 2 ]] && { echo -e "\r$OK               "; ok=$(( $ok + 1 )); } || { echo -e "\r$KO              "; ko=$(( $ko + 1 )); }
 kill $pid &> /dev/null
+wait $pid &> /dev/null
 }
 
 ### RUNNING TESTS
