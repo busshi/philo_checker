@@ -64,7 +64,7 @@ rm -f out
 runtime()
 {
 echo -e "\n${purple}Testing running time (30 seconds): ./philo $1${clear}"
-./philo $1 > /dev/null &
+./philo $1 &> /dev/null &
 pid=$!
 x=30
 while [[ $x -ge 0 ]] ; do
