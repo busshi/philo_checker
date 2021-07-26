@@ -7,6 +7,8 @@ Git clone this repo in the root folder of your project or simply edit the variab
 
 
 Usage:
+/bin/bash philo_check.sh [ meal | death | time <duration> | all <runtime duration> ]
+
 - TEST NB OF EAT OF EACH PHILO : /bin/bash philo_checker.sh meal
 - TEST DEATH : /bin/bash philo_checker.sh death
 - TEST RUNTIME : /bin/bash philo_checker.sh time [optionnal: duration in sec]
