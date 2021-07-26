@@ -68,7 +68,7 @@ echo -e "\n${purple}Testing running time (30 seconds): ./philo $1${clear}"
 pid=$!
 x=30
 while [[ $x -ge 0 ]] ; do
-	echo -e "\r$x seconds remaining\c"
+	echo -e "\r$x seconds remaining \c"
 	x=$(( $x - 1 ))
 	sleep 1
 done
@@ -122,6 +122,7 @@ echo -e "${red}Failed: ${ko} / ${total}${clear}"
 
 
 ### CLEANING AND EXIT
-rm -f philo out
+make -s fclean &> /dev/null
+rm -f out
 
 exit $ko
