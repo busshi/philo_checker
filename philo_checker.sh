@@ -38,7 +38,7 @@ meal()
 for meal in 0 1 2 3 4 5 6 7 8 9 10; do
 	nb_philo=$(echo $1 | cut -d" " -f1)
 	echo -e "\n${purple}Testing nb of meals: ./philo $1 $meal${clear}\n"
-	./philo $1 $meal > out
+	./philo $1 $meal > out 2> /dev/null
 	x=1
 	while [[ $x -le $nb_philo ]]; do
 		check=$( cat out | grep "${x} is eating" | wc -l )
@@ -54,7 +54,7 @@ done
 death()
 {
 echo -e "\n${purple}Checking death: $1${clear}"
-./philo $1 > out
+./philo $1 > out 2> /dev/null
 check=$(cat out | grep "died" | wc -l)
 [[ $check -eq 1 ]] && { echo -e ${OK}; ok=$(( $ok + 1 )); } || { echo -e ${KO}; ko=$(( $ko + 1 )); }
 rm -f out
