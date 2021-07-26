@@ -64,12 +64,12 @@ rm -f out
 runtime()
 {
 echo -e "\n${purple}Testing running time (30 seconds): ./philo $1${clear}"
+[ -z $2 ] && duration=60 || duration=$2
 ./philo $1 &> /dev/null &
 pid=$!
-x=30
-while [[ $x -ge 0 ]] ; do
-	echo -e "\r$x seconds remaining \c"
-	x=$(( $x - 1 ))
+while [[ $duration -ge 0 ]] ; do
+	echo -e "\r$duration seconds remaining \c"
+	duration=$(( $duration - 1 ))
 	sleep 1
 done
 check=$(ps -aef | grep "$pid" | wc -l)
@@ -93,9 +93,9 @@ case $1 in
 		;;
 	"time")
 		compil
-		runtime "5 800 200 200"
-		runtime "4 410 200 200"
-		runtime "2 300 100 100"
+		runtime "5 800 200 200" $2
+		runtime "4 410 200 200" $2
+		runtime "2 300 100 100" $2
 		;;
 	"all")
 		compil
@@ -104,12 +104,12 @@ case $1 in
 		meal "2 300 100 100"
 		death "4 310 200 100 20"
 		death "1 800 200 200"
-		runtime "5 800 200 200"
-		runtime "4 410 200 200"
-		runtime "2 300 100 100"
+		runtime "5 800 200 200" $2
+		runtime "4 410 200 200" $2
+		runtime "2 300 100 100" $2
 		;;
 	*)
-		echo "Usage: ./philo_checker.sh [ meal | death | time | all ]"
+		echo "Usage: ./philo_checker.sh [ meal | death | time <duration> | all <duration> ]"
 		exit 1
 		;;
 esac
