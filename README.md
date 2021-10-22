@@ -1,5 +1,8 @@
 # PHILO_CHECKER
 
+<p align="center">
+	<img src="./assets/philo_checker.gif" >
+</p>
 
 ### Run a few tests on your philosophers program (without bonus).
 
