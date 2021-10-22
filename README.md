@@ -5,11 +5,18 @@
 
 Git clone this repo in the root folder of your project or simply edit the variable $DIR in the script...
 
+```bash
+git clone http://github.com/busshi/philo_checker.git && cd philo_checker.git && ./philo_checker.sh
+```
 
 Usage:
-/bin/bash philo_check.sh [ meal | death | time <duration> | all <runtime duration> ]
+```bash
+./philo_checker.sh [ meal | death | time <duration> | all <runtime duration> ]
+```
 
-- TEST NB OF EAT OF EACH PHILO : /bin/bash philo_checker.sh meal
-- TEST DEATH : /bin/bash philo_checker.sh death
-- TEST RUNTIME : /bin/bash philo_checker.sh time [optionnal: duration in sec]
-- TEST ALL : /bin/bash philo_checker.sh all [optionnal: runtime duration in sec]
+```bash
+./philo_checker.sh meal # TEST NB OF MEALS OF EACH PHILO
+./philo_checker.sh death # TEST DEATH
+./philo_checker.sh time [optionnal: duration in sec] # TEST RUNTIME
+./philo_checker.sh all [optionnal: runtime duration in sec] # TEST ALL
+```
