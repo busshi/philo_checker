@@ -6,7 +6,7 @@
 Git clone this repo in the root folder of your project or simply edit the variable $DIR in the script...
 
 ```bash
-git clone http://github.com/busshi/philo_checker.git && cd philo_checker.git && ./philo_checker.sh
+git clone https://github.com/busshi/philo_checker.git && cd philo_checker.git && ./philo_checker.sh
 ```
 
 Usage:
